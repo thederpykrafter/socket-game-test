@@ -12,5 +12,15 @@ html, body {
 
 /* remove scrollbars */
 canvas { 
-    display:block; 
+    display:block;
 } 
+
+.dot {
+    --dot-size: 40px;
+    background-color: rgba(2, 2, 2, 0.1);
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50, -50);
+}
