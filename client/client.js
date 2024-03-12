@@ -23,4 +23,9 @@ function draw(data){
     ctx.fillText(data[i].number, data[i].x, data[i].y);
   }
 }
-
+function fullscreen() {
+  document.documentElement.requestFullscreen().catch(e => {
+    console.log(e);
+  
+  })
+}
