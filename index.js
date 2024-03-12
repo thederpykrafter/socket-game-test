@@ -10,13 +10,35 @@ const port = 5173;
 // Serve html
 app.use(express.static(__dirname+"/client"))
 
-// sockets
+// Sockets
+var SOCKET_LIST = {};
+var PLAYER_LIST = {};
+
+var Player = (id) => {
+  var self = {
+    x: 0,
+    y: 0,
+    id: id,
+    number: "" + Math.floor(10 * Math.random()),
+  }
+  return self;
+}
+
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  socket.id = Math.random();
+  SOCKET_LIST[socket.id] = socket;
+
+  var player = Player(socket.id);
+  PLAYER_LIST[socket.id] = player;
   
+  console.log('a user connected');
+
+  // Disconnect 
   socket.on('disconnect', () => {
+    delete SOCKET_LIST[socket.id];
+    delete PLAYER_LIST[socket.id];
     console.log('a user disconnected')
-  })
+  });
 });
 
 // Start server
@@ -26,5 +48,21 @@ server.listen(port, () => {
 
 // Game loop
 setInterval(()=>{
-  io.sockets.emit('update', user)
+  var pack = []
+  
+  for (var i in PLAYER_LIST) {
+    var player = PLAYER_LIST[i];
+    player.x++;
+    player.y++;
+    pack.push({
+      x: player.x,
+      y: player.y,
+      number: player.number
+    })
+  };
+  for (var i in SOCKET_LIST) {
+    var socket = SOCKET_LIST[i];
+    socket.emit('update', pack);
+  };
+  
 }, 1000 / 60); // 60 fps
