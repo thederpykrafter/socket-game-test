@@ -4,14 +4,61 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Socket.io</title>
+  
   <link rel="stylesheet" href="style.css">
-  <script src="touch.js"></script>
 </head>
+  
 <body>
+  
+  <div class="touch-overlay">
+    <div id="gap"></div>
+
+    <div id="controls"> <!-- bottom row -->
+      <div id="d-pad">
+        <div class="pad-row">
+          <div class="d-pad-button" id="empty"></div>
+          <div class="d-pad-button" id="up"></div>
+          <div class="d-pad-button" id="empty"></div>
+        </div>
+        <div class="pad-row">
+          <div class="d-pad-button" id="left"></div>
+          <div class="d-pad-button" id="center"></div>
+          <div class="d-pad-button" id="right"></div>
+        </div>
+        <div class="pad-row">
+          <div class="d-pad-button" id="empty"></div>
+          <div class="d-pad-button" id="down"></div>
+          <div class="d-pad-button" id="empty"></div>
+        </div>
+      </div>
+
+      <div id="x-pad">
+        <div class="pad-row" id="x-pad-row">
+          <div class="x-pad-button" id="empty"></div>
+          <div class="x-pad-button" id="a"></div>
+          <div class="x-pad-button" id="empty"></div>
+        </div>
+        <div class="pad-row" id="x-pad-row">
+          <div class="x-pad-button" id="b"></div>
+          <div class="x-pad-button" id="empty"></div>
+          <div class="x-pad-button" id="x"></div>
+        </div>
+        <div class="pad-row" id="x-pad-row"">
+          <div class="x-pad-button" id="empty"></div>
+          <div class="x-pad-button" id="y"></div>
+          <div class="x-pad-button" id="empty"></div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  
   <canvas id="canvas"></canvas>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js" integrity="sha512-YeeA/Qxn5hYdkukScTCNNOhTrv1C2RubAGButJ1rmgQwZf/HdRaCGl+JAVkqsqaNRaYNHdheiuKKuPf9mDcqKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="client.js"></script>
+  <script src="touch.js"></script>
 </body>
 </html>
 

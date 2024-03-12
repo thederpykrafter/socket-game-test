@@ -15,6 +15,69 @@ canvas {
     display:block;
 } 
 
+/* touch overlay */
+.touch-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#gap {
+    flex: 1;
+}
+
+#controls{
+    aspect-ratio: 2/1;
+    display: flex;
+}
+
+#d-pad,
+#x-pad {
+    padding: 0.6rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#x-pad-row {
+    justify-content: right;
+
+}
+
+.pad-row {
+    flex: 0.5;
+    display: flex;
+
+}
+
+.d-pad-button,
+.x-pad-button {
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+}
+
+.d-pad-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 9%;
+}
+
+.x-pad-button {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#center {
+    border: none;
+}
+
+#empty {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);;
+}
+
+/* dot */
 .dot {
     --dot-size: 40px;
     background-color: rgba(2, 2, 2, 0.1);

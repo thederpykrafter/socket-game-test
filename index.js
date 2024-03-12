@@ -16,13 +16,29 @@ var PLAYER_LIST = {};
 
 var Player = (id) => {
   var self = {
-    x: 0,
-    y: 0,
+    x: 200,
+    y: 200,
     id: id,
     number: "" + Math.floor(10 * Math.random()),
+    pressingUp: false,
+    pressingDown: false,
+    pressingLeft: false,
+    pressingRight: false,
+    maxSpd: 3,
   }
+  self.updatePosition = () => {
+    if (self.pressingUp)
+      self.y -= self.maxSpd;
+    if (self.pressingDown)
+      self.y += self.maxSpd;
+    if (self.pressingLeft)
+      self.x -= self.maxSpd;
+    if (self.pressingRight)
+      self.x += self.maxSpd;
+  };
+  
   return self;
-}
+};
 
 io.on('connection', (socket) => {
   socket.id = Math.random();
@@ -39,6 +55,19 @@ io.on('connection', (socket) => {
     delete PLAYER_LIST[socket.id];
     console.log('a user disconnected')
   });
+
+  // input 
+  socket.on('keypress', (data) => {
+    if (data.inputId === 'up')
+      player.pressingUp = data.state;
+    else if (data.inputId === 'down')
+      player.pressingDown = data.state;
+    else if (data.inputId === 'left')
+      player.pressingLeft = data.state;
+    else if (data.inputId === 'right')
+      player.pressingRight = data.state;
+    
+  });
 });
 
 // Start server
@@ -52,8 +81,7 @@ setInterval(()=>{
   
   for (var i in PLAYER_LIST) {
     var player = PLAYER_LIST[i];
-    player.x++;
-    player.y++;
+    player.updatePosition(); 
     pack.push({
       x: player.x,
       y: player.y,
