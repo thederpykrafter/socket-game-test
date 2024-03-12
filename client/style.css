@@ -1,0 +1,16 @@
+/* remove whitespace */
+* { 
+    margin:0; 
+    padding:0; 
+} 
+
+/* full screen*/
+html, body { 
+    width:100%; 
+    height:100%; 
+} 
+
+/* remove scrollbars */
+canvas { 
+    display:block; 
+} 
